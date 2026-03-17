@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학교홍보단 - 메인</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; color: #333; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; margin: 0; padding: 0; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .hero { background-color: #f4f7fb; padding: 100px 0; text-align: center; }
+        .hero h1 { font-size: 42px; margin-bottom: 20px; color: #111; }
+        .hero p { font-size: 18px; color: #555; margin-bottom: 40px; }
+        
+        /* 설문하기 버튼 스타일 */
+        .btn-primary { 
+            display: inline-block;
+            background-color: #005ce6; 
+            color: #fff; 
+            padding: 15px 30px; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: all 0.3s ease;
+        }
+
+        /* 3초 대기 중일 때의 스타일 */
+        .btn-disabled {
+            background-color: #ccc !important;
+            cursor: not-allowed;
+            pointer-events: none; /* 클릭 비활성화 */
+        }
+        
+        footer { background-color: #f8f9fa; padding: 50px 0; border-top: 1px solid #e5e5e5; font-size: 14px; color: #777; }
+        .footer-inner { display: flex; justify-content: center; align-items: center; }
+        .nav-menu { display: flex; gap: 40px; font-weight: 600; font-size: 18px; }
+        .nav-menu li:hover { color: #005ce6; cursor: pointer; text-decoration: underline; }
+
+        /* 사용자 정의 강조 스타일 유지 */
+        .highlightred { color:red; font-weight: bold;}
+        .highlightblue { color: blue; font-weight: bold;}
+        .biggerfont { font-weight : bold; font-size: 60px}
+    </style>
+</head>
+<body>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>일과 시간에 교내투어 하고 <span class="highlightred">봉사 시간</span> 받기</h1>
+                <h1><span class="highlightblue">해외 대학</span>에서 좋아하는 Material</h1>
+                <h1>설명이 필요 없는 자율동아리 <span class="biggerfont">학교홍보단</span> 지원 ㄱㄱ</h1>
+                <p>(설명이 필요하면 하단 Explain을 눌러 활동 확인하기)</p>
+                
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfGl1ldk4oqiF2qgnhTEYXVfBz2Asa-FO9m6PbPNbuAUYC_aQ/viewform?usp=header" 
+                   id="apply-btn"
+                   class="btn-primary btn-disabled">
+                   잠시만 기다려주세요 (3초)
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="Explain.html">Explain 페이지로 이동 ➔</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            const btn = document.getElementById('apply-btn');
+            let timeLeft = 15;
+
+            const timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    btn.innerText = `잠시만 기다려주세요 (${timeLeft}초)`;
+                } else {
+                    // 대기 종료 후 버튼 활성화
+                    btn.classList.remove('btn-disabled');
+                    btn.innerText = "설문하기";
+                    clearInterval(timer);
+                }
+            }, 1000);
+        };
+    </script>
+
+</body>
+</html>
